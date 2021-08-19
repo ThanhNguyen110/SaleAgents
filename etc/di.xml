@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <preference for="AHT\SaleAgents\Api\SaleAgentInterface" type="AHT\SaleAgents\Model\Salesagent" />
+   <preference for="AHT\SaleAgents\Api\SaleAgentRepositoryInterface" type="AHT\SaleAgents\Model\SaleAgentRepository" />
+
+    <type name="Magento\Customer\Model\Data\Customer">
+        <plugin name="aht_changefirstnameplugin" type="AHT\SaleAgents\Plugin\Customer\FirstnamesaPlugin" sortOrder="1" disabled="false"/>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="saleagents_commission_listing_data_source" xsi:type="string">AHT\SaleAgents\Model\ResourceModel\Product\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

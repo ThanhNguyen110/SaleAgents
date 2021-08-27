@@ -37,8 +37,10 @@ class Saleagents extends \Magento\Framework\View\Element\Template
 
         //SELECT `e`.*, `at_sale_agent_id`.`value` AS `sale_agent_id`, `order_sa`.* FROM `catalog_product_entity` AS `e` LEFT JOIN `catalog_product_entity_text` AS `at_sale_agent_id` ON (`at_sale_agent_id`.`entity_id` = `e`.`entity_id`) AND (`at_sale_agent_id`.`attribute_id` = '159') AND (`at_sale_agent_id`.`store_id` = 0) INNER JOIN `aht_sales_agent` AS `order_sa` ON e.entity_id = order_sa.order_item_id WHERE (at_sale_agent_id.value = '3')
         $collection->getSelect()->join(
-            ['order_sa' => $aht_sales_agent],
-            'e.entity_id = order_sa.order_item_id'
+            /* ['order_sa' => $aht_sales_agent],
+            'e.entity_id = order_sa.order_item_id' */
+            ['test' => 'catalog_product_entity_varchar'],
+            'test.entity_id = e.entity_id and test.attribute_id = 73'
         );
         $collection->setPageSize(5);
         var_dump($collection->getSelect()->__toString());
